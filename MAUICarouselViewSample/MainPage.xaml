@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MAUICarouselViewSample.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:carouselItem="clr-namespace:MAUICarouselViewSample"
+    xmlns:template="clr-namespace:MAUICarouselViewSample"
+    xmlns:viewModels="clr-namespace:MAUICarouselViewSample">
+
+    <ContentPage.BindingContext>
+        <viewModels:MainPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource Primary}" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Margin" Value="10,0,10,0" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+
+            <Style TargetType="Frame">
+                <Setter Property="HasShadow" Value="False" />
+                <Setter Property="Padding" Value="15" />
+                <Setter Property="BorderColor" Value="{StaticResource Primary}" />
+            </Style>
+
+        </ResourceDictionary>
+
+        <!--  CarouselView Data Template Selector  -->
+        <DataTemplate x:Key="CurveTemplate">
+            <StackLayout>
+                <Frame
+                    Margin="5"
+                    Padding="1"
+                    BorderColor="{StaticResource ColorBlack}"
+                    CornerRadius="30"
+                    HasShadow="True"
+                    IsClippedToBounds="True">
+
+                    <Grid>
+
+                        <Image
+                            x:Name="BannerImage"
+                            Aspect="AspectFill"
+                            HeightRequest="170"
+                            IsVisible="{Binding IsLoading}"
+                            Source="{Binding ImageUrl}" />
+
+                        <StackLayout
+                            BackgroundColor="#55000000"
+                            HeightRequest="40"
+                            VerticalOptions="EndAndExpand">
+
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="14"
+                                HorizontalOptions="CenterAndExpand"
+                                LineBreakMode="TailTruncation"
+                                Text="{Binding ImageName}"
+                                TextColor="White"
+                                VerticalOptions="CenterAndExpand" />
+
+                        </StackLayout>
+
+                    </Grid>
+
+                </Frame>
+            </StackLayout>
+        </DataTemplate>
+
+        <DataTemplate x:Key="SquareTemplate">
+            <StackLayout>
+                <Frame
+                    Margin="5"
+                    Padding="1"
+                    BorderColor="{StaticResource ColorBlack}"
+                    CornerRadius="0"
+                    HasShadow="True"
+                    IsClippedToBounds="True">
+
+                    <Grid>
+
+                        <Image
+                            x:Name="BannerImage"
+                            Aspect="AspectFill"
+                            HeightRequest="170"
+                            IsVisible="{Binding IsLoading}"
+                            Source="{Binding ImageUrl}" />
+
+                        <StackLayout
+                            BackgroundColor="#55000000"
+                            HeightRequest="40"
+                            VerticalOptions="EndAndExpand">
+
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="14"
+                                HorizontalOptions="CenterAndExpand"
+                                LineBreakMode="TailTruncation"
+                                Text="{Binding ImageName}"
+                                TextColor="White"
+                                VerticalOptions="CenterAndExpand" />
+
+                        </StackLayout>
+
+                    </Grid>
+
+                </Frame>
+            </StackLayout>
+        </DataTemplate>
+
+        <template:CarouselViewTemplateSelector
+            x:Key="TemplateSelector"
+            CurveTemplate="{StaticResource CurveTemplate}"
+            SquareTemplate="{StaticResource SquareTemplate}" />
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <ScrollView BackgroundColor="{StaticResource ColorPrimary}">
+
+            <StackLayout
+                Padding="10"
+                BackgroundColor="White"
+                Spacing="5">
+
+                <!--  Carousel 1st  -->
+                <Frame
+                    Padding="15"
+                    HeightRequest="260"
+                    IsClippedToBounds="True">
+                    <StackLayout Spacing="0">
+                        <Label Text="Normal Carousel" />
+                        <CarouselView
+                            x:Name="carouselView1"
+                            HeightRequest="200"
+                            IndicatorView="IV1"
+                            ItemsSource="{Binding ImageList1}"
+                            PeekAreaInsets="0">
+                            <CarouselView.ItemsLayout>
+                                <LinearItemsLayout
+                                    Orientation="Horizontal"
+                                    SnapPointsAlignment="Center"
+                                    SnapPointsType="MandatorySingle" />
+                            </CarouselView.ItemsLayout>
+                            <CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Frame
+                                            Margin="5"
+                                            Padding="0"
+                                            CornerRadius="0"
+                                            HasShadow="True"
+                                            IsClippedToBounds="True">
+
+                                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+                                                <Image
+                                                    x:Name="BannerImage"
+                                                    Aspect="AspectFill"
+                                                    HeightRequest="170"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    IsVisible="{Binding IsLoading}"
+                                                    Source="{Binding ImageUrl}"
+                                                    VerticalOptions="FillAndExpand" />
+
+                                                <StackLayout
+                                                    BackgroundColor="#55000000"
+                                                    HeightRequest="40"
+                                                    VerticalOptions="EndAndExpand">
+
+                                                    <Label
+                                                        FontAttributes="Bold"
+                                                        FontSize="14"
+                                                        HorizontalOptions="CenterAndExpand"
+                                                        LineBreakMode="TailTruncation"
+                                                        Text="{Binding ImageName}"
+                                                        TextColor="White"
+                                                        VerticalOptions="CenterAndExpand" />
+
+                                                </StackLayout>
+                                            </Grid>
+                                        </Frame>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CarouselView.ItemTemplate>
+                        </CarouselView>
+
+                        <IndicatorView
+                            x:Name="IV1"
+                            HorizontalOptions="Center"
+                            IndicatorColor="LightGray"
+                            IndicatorSize="10"
+                            SelectedIndicatorColor="DarkGray" />
+                    </StackLayout>
+                </Frame>
+
+                <!--  Carousel 2nd  -->
+                <Frame
+                    Padding="15"
+                    HeightRequest="260"
+                    IsClippedToBounds="True">
+                    <StackLayout>
+                        <Label Text="Carousel Animation with PeekAreaInsets" />
+                        <CarouselView
+                            x:Name="carouselView2"
+                            HeightRequest="200"
+                            HorizontalOptions="FillAndExpand"
+                            IndicatorView="IV2"
+                            ItemsSource="{Binding ImageList2}"
+                            PeekAreaInsets="30">
+
+                            <CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <carouselItem:CarouselItemView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                                </DataTemplate>
+                            </CarouselView.ItemTemplate>
+
+                        </CarouselView>
+                        <IndicatorView
+                            x:Name="IV2"
+                            HorizontalOptions="Center"
+                            IndicatorColor="LightGray"
+                            IndicatorsShape="Square"
+                            SelectedIndicatorColor="{StaticResource ColorPrimary}" />
+                    </StackLayout>
+                </Frame>
+
+                <!--  Carousel 3rd  -->
+                <Frame
+                    Padding="15"
+                    HeightRequest="260"
+                    IsClippedToBounds="True">
+                    <StackLayout>
+                        <Label Text="Carousel with Animation" />
+                        <CarouselView
+                            HeightRequest="200"
+                            x:Name="carouselView3"
+                            HorizontalOptions="FillAndExpand"
+                            IndicatorView="IV3"
+                            ItemsSource="{Binding ImageList3}">
+
+                            <CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <carouselItem:CarouselItemView2 />
+                                </DataTemplate>
+                            </CarouselView.ItemTemplate>
+
+                        </CarouselView>
+                        <IndicatorView
+                            x:Name="IV3"
+                            HorizontalOptions="Center"
+                            IndicatorColor="LightGray"
+                            MaximumVisible="5"
+                            SelectedIndicatorColor="{StaticResource ColorBlack}" />
+                    </StackLayout>
+                </Frame>
+
+                <!--  Carousel 4th  -->
+                <Frame
+                    Padding="15"
+                    HeightRequest="260"
+                    IsClippedToBounds="True">
+                    <StackLayout>
+                        <Label Text="Carousel with Animation" />
+                        <CarouselView
+                            x:Name="carouselView6"
+                            HeightRequest="200"
+                            HorizontalOptions="FillAndExpand"
+                            IndicatorView="IV4"
+                            ItemsSource="{Binding ImageList6}">
+
+                            <CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <carouselItem:CarouselItemView3 />
+                                </DataTemplate>
+                            </CarouselView.ItemTemplate>
+
+                        </CarouselView>
+                        <IndicatorView
+                            x:Name="IV4"
+                            HorizontalOptions="Center"
+                            IndicatorColor="LightGray"
+                            MaximumVisible="5"
+                            SelectedIndicatorColor="{StaticResource ColorPrimary}" />
+                    </StackLayout>
+                </Frame>
+
+                <!--  Carousel 5th  -->
+                <Frame
+                    Padding="15"
+                    HeightRequest="260"
+                    IsClippedToBounds="True">
+                    <StackLayout>
+                        <Label Text="Carousel with Vertical Orientation" />
+                        <CarouselView
+                            x:Name="carouselView4"
+                            HorizontalOptions="FillAndExpand"
+                            IndicatorView="IV5"
+                            HeightRequest="200"
+                            ItemsSource="{Binding ImageList4}"
+                            PeekAreaInsets="0">
+
+                            <CarouselView.ItemsLayout>
+                                <LinearItemsLayout
+                                    Orientation="Vertical"
+                                    SnapPointsAlignment="Center"
+                                    SnapPointsType="MandatorySingle" />
+                            </CarouselView.ItemsLayout>
+
+                            <CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <carouselItem:CarouselItemView2 />
+                                </DataTemplate>
+                            </CarouselView.ItemTemplate>
+
+                        </CarouselView>
+                        <IndicatorView
+                            x:Name="IV5"
+                            HorizontalOptions="Center"
+                            IndicatorColor="LightGray"
+                            IndicatorsShape="Square"
+                            SelectedIndicatorColor="Red" />
+                    </StackLayout>
+                </Frame>
+
+                <!--  Carousel 6th  -->
+                <Frame
+                    Padding="15"
+                    HeightRequest="260"
+                    IsClippedToBounds="True">
+                    <StackLayout>
+                        <Label Text="Carousel with TemplateSelector" />
+                        <CarouselView
+                            x:Name="carouselView5"
+                            HorizontalOptions="FillAndExpand"
+                            IndicatorView="IV6"
+                            HeightRequest="200"
+                            ItemTemplate="{StaticResource TemplateSelector}"
+                            ItemsSource="{Binding ImageList5}"
+                            PeekAreaInsets="10">
+
+                            <CarouselView.ItemsLayout>
+                                <LinearItemsLayout
+                                    Orientation="Horizontal"
+                                    SnapPointsAlignment="Center"
+                                    SnapPointsType="MandatorySingle" />
+                            </CarouselView.ItemsLayout>
+
+                            <!--  CarouselView EmptyView  -->
+                            <CarouselView.EmptyView>
+                                <StackLayout
+                                    HorizontalOptions="CenterAndExpand"
+                                    Orientation="Vertical"
+                                    Spacing="10"
+                                    VerticalOptions="CenterAndExpand">
+
+                                    <ActivityIndicator
+                                        HeightRequest="30"
+                                        HorizontalOptions="CenterAndExpand"
+                                        IsRunning="True"
+                                        VerticalOptions="CenterAndExpand"
+                                        WidthRequest="30"
+                                        Color="Gray" />
+
+                                    <Label
+                                        FontSize="16"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Text="Loading Banner List..."
+                                        TextColor="Gray"
+                                        VerticalOptions="StartAndExpand" />
+
+                                </StackLayout>
+                            </CarouselView.EmptyView>
+
+                        </CarouselView>
+                        <IndicatorView
+                            x:Name="IV6"
+                            HorizontalOptions="Center"
+                            IndicatorColor="LightGray"
+                            IndicatorsShape="Square"
+                            SelectedIndicatorColor="Red" />
+                    </StackLayout>
+
+                </Frame>
+
+            </StackLayout>
+
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

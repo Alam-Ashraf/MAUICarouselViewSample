@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <_PostProcessingItem Include="MAUICarouselViewSample.app/MAUICarouselViewSample">
+      <BCSymbolMapName>MAUICarouselViewSample.bcsymbolmap</BCSymbolMapName>
+      <NoDSymUtil>true</NoDSymUtil>
+      <dSYMSourcePathExists>false</dSYMSourcePathExists>
+      <NoSymbolStrip>true</NoSymbolStrip>
+      <dSYMInfoPlistRelativePath>MAUICarouselViewSample.app.dSYM\Contents\Info.plist</dSYMInfoPlistRelativePath>
+      <SymbolFile>/Users/alamgeer/XamarinBlogs/MAUICarouselView/MAUICarouselViewSample/obj/Debug/net6.0-ios/iossimulator-x64/mtouch-symbols.list</SymbolFile>
+      <DSymName>MAUICarouselViewSample.app.dSYM</DSymName>
+      <SourceProjectPath>/Users/alamgeer/XamarinBlogs/MAUICarouselView/MAUICarouselViewSample</SourceProjectPath>
+    </_PostProcessingItem>
+  </ItemGroup>
+</Project>

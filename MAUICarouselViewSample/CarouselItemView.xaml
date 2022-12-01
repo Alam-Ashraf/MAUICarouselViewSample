@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<StackLayout
+    x:Class="MAUICarouselViewSample.CarouselItemView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Frame
+        x:Name="FrameContainer"
+        Margin="15"
+        Padding="0"
+        CornerRadius="20"
+        HasShadow="True"
+        IsClippedToBounds="True">
+
+        <Grid>
+
+            <Image
+                x:Name="BannerImage"
+                Aspect="AspectFill"
+                HeightRequest="170"
+                IsVisible="{Binding IsLoading}"
+                Source="{Binding ImageUrl}" />
+
+            <StackLayout
+                BackgroundColor="#55000000"
+                HeightRequest="40"
+                VerticalOptions="EndAndExpand">
+
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="14"
+                    HorizontalOptions="CenterAndExpand"
+                    LineBreakMode="TailTruncation"
+                    Text="{Binding ImageName}"
+                    TextColor="White"
+                    VerticalOptions="CenterAndExpand" />
+
+            </StackLayout>
+
+        </Grid>
+
+    </Frame>
+</StackLayout>
