@@ -1,7 +1,8 @@
 # MAUICarouselViewSample
 .Net MAUI CarouselView with IndicatorView
 
-https://user-images.githubusercontent.com/48187633/204971135-d50008ba-6fab-49c9-8f0a-ad6335cc8c74.mp4
+
+https://user-images.githubusercontent.com/48187633/207922354-21971695-4d3e-4eee-b68e-058206159f89.mp4
 
 
 <img width="617" alt="dotnetMAUICarouselViewWithIndicatorView" src="https://user-images.githubusercontent.com/48187633/204970510-423fff1a-47f6-4788-b571-11b2d52b4035.png">
